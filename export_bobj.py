@@ -1,12 +1,31 @@
+# SPDX-FileCopyrightText: 2020-2026 McHorse
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 import os
 
 import bpy
 
-from progress_report import ProgressReport, ProgressReportSubstep
+from bpy_extras.wm_utils.progress_report import ProgressReport, ProgressReportSubstep
 
 # Remove spaces from given string (so it would be spaceless)
 def name_compat(name):
     return 'None' if name is None else name.replace(' ', '_')
+
+# Yield all fcurves of an action, regardless of whether it uses the legacy
+# flat fcurve list or the layered layers/strips/channelbags data model
+def iter_action_fcurves(action):
+    if hasattr(action, 'fcurves'):
+        yield from action.fcurves
+        return
+
+    for layer in action.layers:
+        for strip in layer.strips:
+            if strip.type != 'KEYFRAME':
+                continue
+
+            for channelbag in strip.channelbags:
+                yield from channelbag.fcurves
 
 # Writes all action keyframes
 def write_actions(context, fw):
@@ -30,7 +49,7 @@ def write_action(context, fw, name, action):
         return l
     
     # Collect groups
-    for fc in action.fcurves:
+    for fc in iter_action_fcurves(action):
         if fc.data_path.startswith('pose.bones["'):
             key = fc.data_path[12:]
             key = key[:key.index('"')]
