@@ -4,9 +4,9 @@ This is resository is contains a Blender3d add-on that adds a menu item in the F
 
 ## How to install
 
-Download this as zip, then in Blender's add-ons panel (File > User Preferences > Add-ons), click `Install from File...` and finally choose the downloaded zip. That should install this exporter script. 
+Download this as zip, then in Blender's Preferences > Get Extensions (or Add-ons) panel, use "Install from Disk..." and choose the downloaded zip. That should install this exporter script.
 
-Note: this script was written for Blender **2.79**.
+Note: this `master` branch packages the add-on as a Blender Extension (`blender_manifest.toml`) and targets Blender **5.2+**. For older Blender, use the `blender-2.8` branch (2.80-5.2, legacy add-on) or the `blender-2.7` branch (2.7x).
 
 ## How to use
 
