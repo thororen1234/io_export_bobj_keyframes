@@ -28,40 +28,54 @@ def iter_action_fcurves(action):
                 yield from channelbag.fcurves
 
 # Writes all action keyframes
-def write_actions(context, fw):
+def write_actions(context, fw, filepath):
     fw('# Animation data\n')
-    
-    # Exporting animation actions
+
+    # Collect the bone fcurve groups for every action, skipping ones with nothing to export
+    entries = []
+
     for key, action in bpy.data.actions.items():
-        write_action(context, fw, key, action)
-                   
-# Write an action
-def write_action(context, fw, name, action):
+        groups = collect_action_groups(action)
+
+        if groups:
+            entries.append([key, groups])
+
+    # When exactly one action is being exported, name it after the output
+    # file instead of Blender's (often generic, e.g. "ArmatureAction") name,
+    # matching the emote name the file is saved under
+    if len(entries) == 1:
+        entries[0][0] = os.path.splitext(os.path.basename(filepath))[0]
+
+    for name, groups in entries:
+        write_action(context, fw, name, groups)
+
+# Collect an action's bone fcurve groups, keyed by bone name
+def collect_action_groups(action):
     groups = {}
-    
+
     def getOrCreate(key):
         if key in groups:
             return groups[key]
-        
+
         l = []
         groups[key] = l
-        
+
         return l
-    
+
     # Collect groups
     for fc in iter_action_fcurves(action):
         if fc.data_path.startswith('pose.bones["'):
             key = fc.data_path[12:]
             key = key[:key.index('"')]
-            
+
             getOrCreate(key).append(fc)
-    
-    # Don't write anything if this action is empty
-    if not groups:
-        return
-    
+
+    return groups
+
+# Write an action
+def write_action(context, fw, name, groups):
     fw('an %s\n' % name)
-    
+
     for key, group in groups.items():
         fw('ao %s\n' % name_compat(key))
         
@@ -138,7 +152,7 @@ def write_file(context, filepath, scene, progress=ProgressReport()):
             # Write Header
             fw('# Blender v%s BOBJ keyframes: %r\n' % (bpy.app.version_string, os.path.basename(bpy.data.filepath)))
 
-            # Write keyframes to the file   
-            write_actions(context, fw)
+            # Write keyframes to the file
+            write_actions(context, fw, filepath)
             
         subprogress1.step("Finished exporting keyframes")
