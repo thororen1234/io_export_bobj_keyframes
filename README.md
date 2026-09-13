@@ -4,32 +4,32 @@ This is resository is contains a Blender3d add-on that adds a menu item in the F
 
 ## How to install
 
-Download this as zip, then in Blender's add-ons panel (File > User Preferences > Add-ons), click `Install from File...` and finally choose the downloaded zip. That should install this exporter script. 
+Download this as zip, then in Blender's add-ons panel (File > User Preferences > Add-ons), click `Install from File...` and finally choose the downloaded zip. That should install this exporter script.
 
-Note: this `blender-2.7` branch targets Blender **2.7x** (register_module / INFO_MT_file_export era). For Blender 2.80-5.2 as a legacy add-on, use the `blender-2.8` branch. For Blender 5.2+ packaged as a modern Extension, use `master`.
+Note: this `2.7` branch targets Blender **2.7x** (register_module / INFO_MT_file_export era). For Blender 2.80-5.2 as a legacy add-on, use the `2.8` branch. For Blender 5.2+ packaged as a modern Extension, use `master`.
 
 ## How to use
 
-Once you animated some actions, you can use this add-ons' File > Export > `BOBJ keyframes` menu item to generate a BOBJ file with keyframe data. Export it to Minecraft's `config/emoticons/emotes/` under any filename (don't modify the file extension though). 
+Once you animated some actions, you can use this add-ons' File > Export > `BOBJ keyframes` menu item to generate a BOBJ file with keyframe data. Export it to Minecraft's `config/emoticons/emotes/` under any filename (don't modify the file extension though).
 
 **If you made some emotes, and want them to be accessible in the emote configuration menu**, then create a file by the same name, but with JSON extension (`test.bobj` becomes `test.json`), and for every `emote_` action you created (every emote animation must begin with `emote_`) define title and description:
 
 ```json
 {
-	"cool_dance": {
-		"looping": true,
-		"title": "Cool Dance",
-		"description": "Very cool dance"
-	},
-	"superhero_pose": {
-		"title": "Supehero Pose",
-		"description": "\"I'm a superhero\""
-	},
-	"worm": {
-		"looping": true,
-		"title": "Worm",
-		"description": "Wiggle!"	
-	}
+ "cool_dance": {
+  "looping": true,
+  "title": "Cool Dance",
+  "description": "Very cool dance"
+ },
+ "superhero_pose": {
+  "title": "Supehero Pose",
+  "description": "\"I'm a superhero\""
+ },
+ "worm": {
+  "looping": true,
+  "title": "Worm",
+  "description": "Wiggle!" 
+ }
 }
 ```
 
