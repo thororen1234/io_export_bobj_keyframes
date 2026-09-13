@@ -2,6 +2,17 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+bl_info = {
+    "name": "BOBJ keyframes",
+    "author": "McHorse",
+    "version": (0, 1, 1),
+    "blender": (2, 80, 0),
+    "location": "File > Export",
+    "description": "Export actions (animation keyframes) into .bobj file",
+    "warning": "",
+    "category": "Export"
+}
+
 import bpy
 from bpy.props import StringProperty
 from bpy_extras.io_utils import ExportHelper, path_reference_mode

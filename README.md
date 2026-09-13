@@ -6,7 +6,7 @@ This is resository is contains a Blender3d add-on that adds a menu item in the F
 
 Download this as zip, then in Blender's add-ons panel (File > User Preferences > Add-ons), click `Install from File...` and finally choose the downloaded zip. That should install this exporter script. 
 
-Note: this script was written for Blender **2.79**.
+Note: this branch (`blender-2.8`) targets Blender **2.80 through 5.2+** (installed as a legacy add-on, via "Install from File..." / "Install Legacy Add-on"). For Blender 2.7x, use the `blender-2.7` branch. For Blender 5.2+ packaged as a modern Extension, use `master`.
 
 ## How to use
 
