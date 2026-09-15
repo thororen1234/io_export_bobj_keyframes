@@ -1,12 +1,12 @@
 # BOBJ keyframe Blender exporter add-on
 
-This is resository is contains a Blender3d add-on that adds a menu item in the File > Export called `BOBJ keyframes`. With this add-on you can export BOBJ keyframes to be used with Emoticons mod.
+This is resository is contains a Blender3d add-on that adds menu items in File > Export and File > Import called `BOBJ keyframes`. With this add-on you can export BOBJ keyframes to be used with Emoticons mod, and import them back onto an Armature (e.g. to make edits or tweaks to the emote or if you forgot to render an icon if you need one).
 
 ## How to install
 
-Download this as zip, then in Blender's add-ons panel (File > User Preferences > Add-ons), click `Install from File...` and finally choose the downloaded zip. That should install this exporter script.
+Download this as zip, then in Blender's Preferences > Get Extensions (or Add-ons) panel, use "Install from Disk..." and choose the downloaded zip. That should install this exporter script.
 
-Note: this branch (`2.8`) targets Blender **2.80 through 5.2+** (installed as a legacy add-on, via "Install from File..." / "Install Legacy Add-on"). For Blender 2.7x, use the `2.7` branch. For Blender 5.2+ packaged as a modern Extension, use `master`.
+Note: this `master` branch packages the add-on as a Blender Extension (`blender_manifest.toml`) and targets Blender **5.2+**. For older Blender, use the `2.8` branch (2.80-5.2, legacy add-on) or the `2.7` branch (2.7x).
 
 ## How to use
 
@@ -34,3 +34,7 @@ Once you animated some actions, you can use this add-ons' File > Export > `BOBJ 
 ```
 
 This would be the config if we'd have, let's say, five actions in Blender: `emote_cool_dance`, `emote_superhero_pose`, `emote_worm`, `creeping_walk` and `alt_death`. Once both BOBJ and JSON files are exported and configured, Cool Dance, Superhero Pose and Worm will be available as emotes, while `creeping_walk` and `alt_death` would be available to be used in Actions panel of the Emoticons morph, which you can replace the original walk and death cycles.
+
+## How to import
+
+Select the Armature object the BOBJ file was originally exported from (the file only stores per-bone keyframes by bone name, not the skeleton itself), then use File > Import > `BOBJ keyframes` and choose the `.bobj` file. Each `an` block in the file becomes (or updates) an action of that name in `bpy.data.actions`.

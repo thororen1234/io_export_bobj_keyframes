@@ -1,5 +1,4 @@
 # SPDX-FileCopyrightText: 2020-2026 McHorse
-#
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import bpy
