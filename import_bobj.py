@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import bpy
-
 from bpy_extras.wm_utils.progress_report import ProgressReport, ProgressReportSubstep
 
 # Map the shorthand data path written by the exporter back to the real property name
