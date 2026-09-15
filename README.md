@@ -1,6 +1,6 @@
 # BOBJ keyframe Blender exporter add-on
 
-This is resository is contains a Blender3d add-on that adds menu items in File > Export and File > Import called `BOBJ keyframes`. With this add-on you can export BOBJ keyframes to be used with Emoticons mod, and import them back onto an Armature (e.g. to re-render an emote's icon if you no longer remember what it looks like).
+This is resository is contains a Blender3d add-on that adds menu items in File > Export and File > Import called `BOBJ keyframes`. With this add-on you can export BOBJ keyframes to be used with Emoticons mod, and import them back onto an Armature (e.g. to make edits or tweaks to the emote or if you forgot to render an icon if you need one).
 
 ## How to install
 
@@ -37,4 +37,4 @@ This would be the config if we'd have, let's say, five actions in Blender: `emot
 
 ## How to import
 
-Select the Armature object the BOBJ file was originally exported from (the file only stores per-bone keyframes by bone name, not the skeleton itself), then use File > Import > `BOBJ keyframes` and choose the `.bobj` file. Each `an` block in the file becomes (or updates) an action of that name in `bpy.data.actions`, which you can then select in the Action Editor/NLA to pose the rig and render an icon.
+Select the Armature object the BOBJ file was originally exported from (the file only stores per-bone keyframes by bone name, not the skeleton itself), then use File > Import > `BOBJ keyframes` and choose the `.bobj` file. Each `an` block in the file becomes (or updates) an action of that name in `bpy.data.actions`.
