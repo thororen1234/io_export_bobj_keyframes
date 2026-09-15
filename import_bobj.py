@@ -1,5 +1,4 @@
 import bpy
-
 from progress_report import ProgressReport, ProgressReportSubstep
 
 # Map the shorthand data path written by the exporter back to the real property name

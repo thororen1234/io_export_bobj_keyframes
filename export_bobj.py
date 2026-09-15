@@ -1,7 +1,5 @@
 import os
-
 import bpy
-
 from progress_report import ProgressReport, ProgressReportSubstep
 
 # Remove spaces from given string (so it would be spaceless)
@@ -111,6 +109,7 @@ def stringify_keyframe(context, keyframe):
     f = 20 / fps
 
     interp = keyframe.interpolation
+    # round the frame to a whole number because minecraft seems to sometimes just have a heart attack and die
     result = 'kf %d %f %s' % (round(float(keyframe.co[0]) * float(f)), keyframe.co[1], interp)
     result += ' %f %f %f %f' % (keyframe.handle_left[0] * f, keyframe.handle_left[1], keyframe.handle_right[0] * f, keyframe.handle_right[1])
     
